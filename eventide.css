@@ -1,4 +1,4 @@
-/* Eventide / Vespera: a printed leaf.
+/* Nychthemeron: a printed leaf.
    Vellum, iron-gall ink, rubric red and lapis.  A classical meander across the head of the
    page and a folk lozenge band at its foot are the only ornaments; the rest is text. */
 :root {
@@ -13,9 +13,11 @@
   --umber: #5b3b2a;
   --rule: #c2b289;
 
-  --body: "EB Garamond", Garamond, "Hoefler Text", "Palatino Linotype", Georgia, serif;
-  --display: "IM Fell English", "EB Garamond", Georgia, serif;
-  --sc: "IM Fell English SC", "EB Garamond", Georgia, serif;
+  --scripts: "Noto Serif Devanagari", "Amiri", "Noto Sans Brahmi", "Noto Sans Kharoshthi", "Noto Sans Old Persian",
+             "Noto Sans Inscriptional Pahlavi", "Noto Sans Avestan";
+  --body: "EB Garamond", Garamond, "Hoefler Text", "Palatino Linotype", Georgia, var(--scripts), serif;
+  --display: "IM Fell English", "EB Garamond", Georgia, var(--scripts), serif;
+  --sc: "IM Fell English SC", "EB Garamond", Georgia, var(--scripts), serif;
   --caps: all-small-caps;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --gutter: clamp(1.25rem, 5vw, 3.2rem);
@@ -27,20 +29,22 @@
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .27 0 0 0 0 .15 0 0 0 .075 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 html[lang="de"] {
-  --body: "Grenze Gotisch", "UnifrakturMaguntia", "EB Garamond", serif;
-  --display: "UnifrakturMaguntia", "Grenze Gotisch", serif;
-  --sc: "Grenze Gotisch", serif;
+  --body: "Grenze Gotisch", "UnifrakturMaguntia", "EB Garamond", var(--scripts), serif;
+  --display: "UnifrakturMaguntia", "Grenze Gotisch", var(--scripts), serif;
+  --sc: "Grenze Gotisch", var(--scripts), serif;
   --caps: normal;
 }
 /* Russian is set in Monomakh, a Slavonic ustav face that carries the old letters (ѣ і ѳ ѵ); Old Standard TT and
    EB Garamond stand behind it for anything it lacks.  It has one weight, so no bold is asked of it. */
 html[lang="ru"] {
-  --body: "Monomakh", "Old Standard TT", "EB Garamond", Georgia, serif;
-  --display: "Monomakh", "Old Standard TT", "EB Garamond", Georgia, serif;
-  --sc: "Monomakh", "Old Standard TT", "EB Garamond", serif;
+  --body: "Monomakh", "Old Standard TT", "EB Garamond", Georgia, var(--scripts), serif;
+  --display: "Monomakh", "Old Standard TT", "EB Garamond", Georgia, var(--scripts), serif;
+  --sc: "Monomakh", "Old Standard TT", "EB Garamond", var(--scripts), serif;
   --caps: normal;
 }
-html[lang="fa"] { --body: "Amiri", "EB Garamond", serif; --display: "Amiri", "EB Garamond", serif; --sc: "Amiri", serif; --caps: normal; }
+html[lang="fa"] { --body: "Amiri", "EB Garamond", var(--scripts), serif; --display: "Amiri", "EB Garamond", var(--scripts), serif; --sc: "Amiri", var(--scripts), serif; --caps: normal; }
+/* Hindi: Devanagari first, with the Latin of the names behind it */
+html[lang="hi"] { --body: "Noto Serif Devanagari", "EB Garamond", var(--scripts), serif; --display: "Noto Serif Devanagari", "EB Garamond", var(--scripts), serif; --sc: "Noto Serif Devanagari", var(--scripts), serif; --caps: normal; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -53,6 +57,7 @@ body {
 }
 html[lang="de"] body { font-size: 1.28rem; line-height: 1.6; font-weight: 500; }
 html[lang="fa"] body { font-size: 1.38rem; line-height: 2.05; }
+html[lang="hi"] body { font-size: 1.12rem; line-height: 1.9; }
 html[lang="ru"] body { font-size: 1.04rem; line-height: 1.75; font-synthesis: none; }
 a { color: var(--lapis); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
 a:hover { color: var(--rubric); }
@@ -80,6 +85,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--rubric); outlin
   border-block-end: 1px solid var(--rule);
 }
 html[lang="de"] .running, html[lang="fa"] .running { letter-spacing: 0; font-size: 1.1rem; }
+.running.wrap { width: min(100%, calc(52rem + 2 * var(--gutter))); }
 .running a { color: var(--ink); text-decoration: none; }
 .running a:hover { color: var(--rubric); text-decoration: underline; }
 .wordmark { font-family: var(--display); font-variant-caps: normal; font-size: 1.35rem; letter-spacing: 0; }
@@ -98,6 +104,7 @@ h1 {
 html[lang="de"] h1 { font-size: clamp(2.9rem, 9vw, 5rem); line-height: 1.12; }
 html[lang="ru"] h1 { font-weight: 400; font-size: clamp(1.9rem, 5.6vw, 3.1rem); line-height: 1.2; }
 html[lang="fa"] h1 { line-height: 1.5; font-weight: 700; }
+html[lang="hi"] h1 { font-size: clamp(2.3rem, 7vw, 3.8rem); line-height: 1.35; font-weight: 600; }
 .ornament { height: 16px; margin: 1.1rem auto 0; width: min(100%, 15rem); background: var(--lozenge) center / contain no-repeat; }
 
 /* ---- text ---- */
@@ -107,10 +114,14 @@ html[lang="fa"] h1 { line-height: 1.5; font-weight: 700; }
   float: inline-start; font-family: var(--display); font-weight: 400; color: var(--rubric);
   font-size: 4.3em; line-height: 0.78; padding-block-start: 0.04em; padding-inline-end: 0.09em;
 }
-html[lang="fa"] .lead::first-letter { float: none; font: inherit; color: inherit; padding: 0; }
+html[lang="fa"] .lead::first-letter, html[lang="hi"] .lead::first-letter { float: none; font: inherit; color: inherit; padding: 0; }
 .origin { font-family: var(--body); font-size: 0.95rem; font-style: italic; color: var(--ink-soft); margin: 0 0 1.4rem; }
 html[lang="de"] .origin, html[lang="fa"] .origin { font-style: normal; }
 .lead strong { font-weight: inherit; }
+/* a short italic line under a title (the portal, the reference pages): no drop capital */
+.lead.standfirst { font-size: 1.1em; font-style: italic; color: var(--ink-soft); text-align: center; margin-block: 0 1.4rem; }
+.lead.standfirst::first-letter { all: unset; }
+html[lang="de"] .lead.standfirst, html[lang="fa"] .lead.standfirst, html[lang="hi"] .lead.standfirst { font-style: normal; }
 .content p { margin: 0 0 1em; }
 @media (min-width: 700px) {
   .content > p { text-align: justify; hyphens: auto; -webkit-hyphens: auto; text-wrap: pretty; }
@@ -123,6 +134,7 @@ h2 {
 html[lang="de"] h2 { font-size: 2.1rem; }
 html[lang="ru"] h2 { font-weight: 400; font-size: 1.4rem; line-height: 1.3; }
 html[lang="fa"] h2 { font-weight: 700; font-size: 1.75rem; }
+html[lang="hi"] h2 { font-weight: 600; font-size: 1.5rem; line-height: 1.5; }
 h2::before {
   content: ""; display: block; width: 3.4rem; height: 12px; margin-block-end: 0.6rem;
   background: var(--lozenge) left center / auto 12px no-repeat;
@@ -131,8 +143,18 @@ html[dir="rtl"] h2::before { background-position: right center; }
 h3 { font-family: var(--display); font-weight: 400; font-size: 1.3rem; margin: 0; }
 cite { font-style: italic; }
 html[lang="de"] em, html[lang="de"] i, html[lang="de"] cite { font-style: normal; letter-spacing: 0.07em; }
-.content ul { margin: 0.4rem 0 0; padding-inline-start: 1.1rem; }
+.content ul, .content ol { margin: 0.4rem 0 0; padding-inline-start: 1.1rem; }
+.content ol { padding-inline-start: 1.6rem; }
+.content ol li::marker { color: var(--rubric); font-family: var(--display); }
+code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.82em; color: var(--ink-soft); }
+h2, h3 { scroll-margin-top: 1rem; }
+.mark { font-family: var(--sans); font-size: 0.8em; font-style: normal; letter-spacing: 0; }
+.mark.todo { color: var(--ink-soft); opacity: 0.7; }
+.mark.done { color: var(--verdigris); }
+.unwritten { color: var(--ink-soft); }
 .content li { margin-block: 0.75rem; padding-inline-start: 0.2rem; }
+.home .content li { margin-block: 0.4rem; }
+.home .content h3 { margin-top: 1.4rem; }
 .content li::marker { color: var(--rubric); content: "◆  "; font-size: 0.6em; }
 
 blockquote {
@@ -140,12 +162,13 @@ blockquote {
   border-block: 1px solid var(--rule); font-style: italic; font-size: 1.08em;
 }
 html[lang="de"] blockquote, html[lang="fa"] blockquote { font-style: normal; }
+html[lang="hi"] blockquote, html[lang="hi"] em, html[lang="hi"] i, html[lang="hi"] cite, html[lang="hi"] .origin { font-style: normal; }
 blockquote p { margin: 0; text-align: center; }
 
 /* ---- the chronology, set as a ledger ---- */
 .table-wrap {
   --w: min(52rem, 100cqw - 2 * var(--gutter));
-  width: var(--w); margin-block: 1.4rem 1.8rem; margin-inline-start: calc(50% - var(--w) / 2);
+  width: var(--w); margin-block: 1.4rem 1.8rem; margin-inline-start: calc(50% - var(--w) / 2); overflow-x: auto;
 }
 table { width: 100%; border-collapse: collapse; font-size: 0.93em; line-height: 1.5; }
 th {
@@ -153,21 +176,25 @@ th {
   letter-spacing: 0.05em; font-size: 1.05em; color: var(--ink-soft);
   padding: 0 0.8rem 0.45rem; border-block-end: 1px solid var(--ink);
 }
-td { padding: 0.8rem 0.8rem; vertical-align: top; border-block-end: 1px solid var(--rule); }
-td:first-child { width: 21%; }
-td:nth-child(2) { width: 17%; color: var(--ink-soft); font-style: italic; }
-html[lang="de"] td:nth-child(2), html[lang="fa"] td:nth-child(2) { font-style: normal; }
-tr:not(.sub) td:first-child { font-family: var(--display); font-size: 1.12em; color: var(--rubric); }
+td { padding: 0.7rem 0.8rem; vertical-align: top; border-block-end: 1px solid var(--rule); }
+td:first-child { min-width: 7rem; }
+td strong { font-weight: 500; }
+tr:not(.sub) td:first-child { font-family: var(--display); font-size: 1.08em; color: var(--rubric); }
+tr:not(.sub) td:first-child strong { font-weight: inherit; }
+tr:not(.sub) td:first-child a { color: inherit; }
 tr.sub td:first-child { padding-inline-start: 1.7rem; font-style: italic; }
 html[lang="de"] tr.sub td:first-child { font-style: normal; }
 tr.sub td { font-size: 0.97em; }
+td em { color: var(--ink-soft); }
+html[lang="de"] td em { letter-spacing: 0.04em; }
+td a { text-underline-offset: 0.18em; }
 @media (max-width: 760px) {
   .table-wrap { width: 100%; margin-inline-start: 0; }
   thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
   table, tbody, tr, td { display: block; width: 100% !important; }
   tr { padding-block: 0.8rem; border-block-end: 1px solid var(--rule); }
   td { padding: 0.1rem 0; border: 0; }
-  td:nth-child(2) { font-size: 0.88em; margin-block-end: 0.3rem; }
+  td:first-child { min-width: 0; }
   tr.sub td:first-child { padding-inline-start: 1rem; }
 }
 
